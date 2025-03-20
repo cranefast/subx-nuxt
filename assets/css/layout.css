@@ -203,7 +203,7 @@
 .footer .inner .family_site .select_box ul li a:hover {
   color: var(--mainColor);
   opacity: 1;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .header .inner .menu_pc .gnb li.promo a {
@@ -232,6 +232,7 @@
   padding: 4rem 2.5rem;
   display: block;
   line-height: 1;
+  font-weight: 500;
 }
 
 .header .inner .search_b .login_btn,

@@ -439,6 +439,10 @@
     background: #000 !important;
   }
 
+  .content_box .con_box_desc .img_b {
+    padding: 9px;
+  }
+
   /* sec03 */
   .sec03 .step_b {
     padding: 5rem !important;

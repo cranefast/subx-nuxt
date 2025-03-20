@@ -1,7 +1,59 @@
 <script setup>
-  const fnMoveScrollElement = (name) => {
+  import { onMounted } from 'vue';
+
+  const baseLine = 200;
+  const posArr = [];
+
+  let scroll = ref(0);
+  const mainContent = ref([]);
+
+  onMounted(() => {
+    setSectionPos();
+    window.addEventListener('scroll', handleScroll);
+  });
+
+  const setSectionPos = () => {
+    mainContent.value = document.querySelectorAll('.section');
+
+    for (let i = 0; i < mainContent.value.length; i++) {
+      posArr.push(mainContent.value[i].offsetTop);
+    }
+
+    handleScroll();
+  };
+
+  const activateSection = (scroll) => {
+    const wid = window.innerWidth;
+
+    for (let i = 0; i < mainContent.value.length; i++) {
+      if (scroll >= posArr[i] - baseLine) {
+        mainContent.value[i].classList.add('on');
+      }
+    }
+
+    if (wid <= 500) {
+      for (let i = 0; i < mainContent.value.length; i++) {
+        if (scroll >= posArr[i] - baseLine * 4) {
+          mainContent.value[i].classList.add('on');
+        }
+      }
+    }
+  };
+
+  const handleScroll = () => {
+    scroll.value = document.documentElement.scrollTop || document.body.scrollTop;
+    if (scroll.value >= 0) {
+      activateSection(scroll.value);
+    }
+  };
+
+  const moveScrollElement = (name) => {
     const element = document.getElementById(name);
     element.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const save = () => {
+    console.log('save!');
   };
 </script>
 
@@ -23,7 +75,7 @@
             경리입니다.
           </h2>
 
-          <a class="start-btn" href="javascript:void(0)" @click="fnMoveScrollElement('sec02')">fine out more</a>
+          <a class="start-btn" href="javascript:void(0)" @click="moveScrollElement('sec02')">fine out more</a>
         </div>
         <div class="visual-mobile">
           <p class="mobile-img"><img src="~/assets/img/main/mv_img.png" alt="이미지" /></p>
@@ -57,7 +109,7 @@
       <div class="inner sec02_swiper">
         <ul class="service_list swiper-wrapper">
           <li class="service n0 swiper-slide">
-            <a href="">
+            <a href="javascript:void(0)">
               <span class="img_b f_c">
                 <img src="~/assets/img/main/m1_icon1.png" alt="콘텐츠사진" />
               </span>
@@ -76,7 +128,7 @@
             </a>
           </li>
           <li class="service n1 swiper-slide">
-            <a class="n1_link" href="">
+            <a class="n1_link" href="javascript:void(0)">
               <span class="img_b f_c">
                 <img src="~/assets/img/main/m1_icon2.png" alt="콘텐츠사진" />
               </span>
@@ -95,7 +147,7 @@
             </a>
           </li>
           <li class="service n2 swiper-slide">
-            <a href="">
+            <a href="javascript:void(0)">
               <span class="img_b f_c">
                 <img src="~/assets/img/main/m1_icon3.png" alt="콘텐츠사진" />
               </span>
@@ -112,7 +164,7 @@
             </a>
           </li>
           <li class="service n3 swiper-slide">
-            <a href="">
+            <a href="javascript:void(0)">
               <span class="img_b f_c">
                 <img src="~/assets/img/main/m1_icon4.png" alt="콘텐츠사진" />
               </span>
@@ -129,7 +181,7 @@
             </a>
           </li>
           <li class="service n4 swiper-slide">
-            <a href="">
+            <a href="javascript:void(0)">
               <span class="img_b f_c">
                 <img src="~/assets/img/main/m1_icon5.png" alt="콘텐츠사진" />
               </span>
@@ -409,7 +461,7 @@
                 <textarea id="message" name="message"></textarea>
               </div>
             </form>
-            <button type="button" id="btnContact">문의하기</button>
+            <button type="button" id="btnContact" @click="save">문의하기</button>
           </div>
         </div>
       </div>
@@ -418,6 +470,7 @@
 </template>
 
 <style scoped>
+  @import '@/assets/css/main_respon.css';
   /*main sticky header*/
   .header {
     background: #f8f8f8;
