@@ -1,5 +1,6 @@
 <script setup>
   import { onBeforeUnmount } from 'vue';
+  import AppHeaderMenu from '~/components/AppHeaderMenu.vue';
 
   const isMobileMenu = ref(false);
 
@@ -25,23 +26,7 @@
           </router-link>
         </h1>
         <nav class="menu_pc">
-          <ul id="gnb" class="gnb cf">
-            <li class="depth1">
-              <router-link to="/service" tag="a">서비스</router-link>
-            </li>
-            <li class="depth1">
-              <router-link to="/review" tag="a">후기</router-link>
-            </li>
-            <li class="depth1">
-              <router-link to="/price" tag="a">가격안내</router-link>
-            </li>
-            <li class="depth1">
-              <router-link to="/faq" tag="a">자주묻는질문</router-link>
-            </li>
-            <li class="depth1">
-              <router-link to="/contact" tag="a">문의</router-link>
-            </li>
-          </ul>
+          <app-header-menu :add-gnb-class="'cf'" />
         </nav>
         <div class="serach_b_all">
           <div class="search_b f_b login_out">
@@ -60,26 +45,7 @@
           </div>
           <div class="menu_mo_s">
             <nav class="menu_mo_nav">
-              <ul class="gnb">
-                <li class="depth1 acc_btn">
-                  <router-link to="/" tag="a">메인</router-link>
-                </li>
-                <li class="depth1 acc_btn">
-                  <router-link to="/service" tag="a">서비스</router-link>
-                </li>
-                <li class="depth1 acc_btn">
-                  <router-link to="/review" tag="a">후기</router-link>
-                </li>
-                <li class="depth1 acc_btn">
-                  <router-link to="/price" tag="a">가격안내</router-link>
-                </li>
-                <li class="depth1 acc_btn">
-                  <router-link to="/faq" tag="a">자주묻는질문</router-link>
-                </li>
-                <li class="depth1 acc_btn">
-                  <router-link to="/contact" tag="a">문의</router-link>
-                </li>
-              </ul>
+              <app-header-menu />
             </nav>
           </div>
         </div>

@@ -537,7 +537,7 @@
   display: block;
 }
 
-.menu_mo .gnb > .depth1 > a:after {
+/*.menu_mo .gnb > .depth1 > a:after {
   content: '';
   background: url(https://www.makeshop.co.kr/newmakeshop/home/img/main/icon_drop.png) no-repeat center/cover;
   width: 4px;
@@ -546,7 +546,7 @@
   left: 73px;
   top: 50%;
   transform: translateY(-50%);
-}
+}*/
 
 .menu_mo .gnb > .depth1.on > a.on:after {
   background: url(https://www.makeshop.co.kr/newmakeshop/home/img/main/icon_drop_blue.png) no-repeat center/cover;

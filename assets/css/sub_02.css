@@ -3518,6 +3518,10 @@ br.lap_hide {
   .check01 .sub_con.consult {
     max-width: 86.7rem;
   }
+
+  .check01 .payment_service_process_all {
+    padding: 0 15px;
+  }
 }
 @media screen and (max-width: 768px) {
   .check01 .cont_box {

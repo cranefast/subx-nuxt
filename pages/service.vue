@@ -247,4 +247,14 @@
   .sub_container {
     width: 100%;
   }
+
+  .sec04 .content_box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 789px) {
+    .sec04 .content_box {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
 </style>
