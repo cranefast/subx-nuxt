@@ -1,38 +1,4 @@
 <script setup>
-
-  import { onMounted } from 'vue';
-  import Swiper from 'swiper';
-
-  onMounted(() => {
-    new Swiper('.sec02_swiper', {
-      slidesPerView: "auto",
-      centeredSlides: true,
-      spaceBetween: 17,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        type: "progressbar",
-      },
-      allowTouchMove: true,
-      breakpoints: {
-        1681: {
-          centeredSlides: false,
-          //spaceBetween: 0,
-          allowTouchMove: false
-        },
-        990: {
-          centeredSlides: false,
-          spaceBetween:15,
-          allowTouchMove: false
-        },
-        500: {
-          centeredSlides: false,
-          allowTouchMove: true
-        }
-      }
-    });
-  })
-
   const fnMoveScrollElement = (name) => {
     const element = document.getElementById(name);
     element.scrollIntoView({ behavior: 'smooth' });
@@ -111,21 +77,21 @@
           </li>
           <li class="service n1 swiper-slide">
             <a class="n1_link" href="">
-            <span class="img_b f_c">
-              <img src="~/assets/img/main/m1_icon2.png" alt="콘텐츠사진" />
-            </span>
-            <span class="txt_b">
-              <strong>
-                업무집중도를
-                <br />
-                높이고싶으신 대표님
-              </strong>
-              <span>
-                전반적인 경리 서비스 이용으로
-                <br />
-                주된 업무에 집중>효율 및 매출 상승
+              <span class="img_b f_c">
+                <img src="~/assets/img/main/m1_icon2.png" alt="콘텐츠사진" />
               </span>
-            </span>
+              <span class="txt_b">
+                <strong>
+                  업무집중도를
+                  <br />
+                  높이고싶으신 대표님
+                </strong>
+                <span>
+                  전반적인 경리 서비스 이용으로
+                  <br />
+                  주된 업무에 집중>효율 및 매출 상승
+                </span>
+              </span>
             </a>
           </li>
           <li class="service n2 swiper-slide">
@@ -444,7 +410,8 @@
               </div>
             </form>
             <button type="button" id="btnContact">문의하기</button>
-          </div></div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -453,11 +420,11 @@
 <style scoped>
   /*main sticky header*/
   .header {
-    background: #f8f8f8;;
-    transition:all 0.3s;
+    background: #f8f8f8;
+    transition: all 0.3s;
   }
   .sticky .header {
     background: #fff;
-    transition:all 0.3s;
+    transition: all 0.3s;
   }
 </style>
