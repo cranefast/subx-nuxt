@@ -2,3 +2,53 @@ ol,
 ul {
   padding-left: 0;
 }
+
+/* 자주묻는질문 */
+.faq-container {
+  max-width: 128rem;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.faq-item:hover {
+  background: #f9f9f9;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+.faq-answer {
+  margin-top: 10px;
+  padding-left: 10px;
+  color: #555;
+  border-left: 3px solid #4caf50;
+}
+
+.rotated {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* 슬라이드 애니메이션 */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}

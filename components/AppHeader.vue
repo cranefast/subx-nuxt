@@ -1,12 +1,16 @@
 <script setup>
-  import { onBeforeUnmount } from 'vue';
-  import AppHeaderMenu from '~/components/AppHeaderMenu.vue';
+  import { useLayoutStore } from '~/stores/layout.js';
+  import { computed } from 'vue';
 
-  const isMobileMenu = ref(false);
+  const layoutStore = useLayoutStore();
 
-  onBeforeUnmount(() => {
-    isMobileMenu.value = false;
-  });
+  const isMobileMenu = computed(() => layoutStore.isMobileMenu);
+
+  // const isMobileMenu = ref(false);
+  //
+  // onBeforeUnmount(() => {
+  //   isMobileMenu.value = false;
+  // });
 </script>
 
 <template>
@@ -34,15 +38,15 @@
           </div>
         </div>
         <div class="btn_box">
-          <button type="button" class="btn_call" @click="isMobileMenu = !isMobileMenu" :class="{ on: isMobileMenu }">
+          <button type="button" class="btn_call" @click="layoutStore.toggleMobileMenu()" :class="{ on: isMobileMenu }">
             <span></span>
             <!-- 230510 [수정표시] -->
           </button>
         </div>
         <div class="menu_mo" :class="{ on: isMobileMenu }">
-          <div class="login_btn">
+          <!--          <div class="login_btn">
             <a href="l" class="login_btn">로그인/회원가입</a>
-          </div>
+          </div>-->
           <div class="menu_mo_s">
             <nav class="menu_mo_nav">
               <app-header-menu />

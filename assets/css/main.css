@@ -1956,12 +1956,20 @@
   border-radius: 2rem;
 }
 
+.sec05 .right_con .info_desc input, textarea{
+  margin-bottom: 5px;
+}
+
 .sec05 .right_con .info_desc a {
   display: flex;
   align-items: center;
   padding: 1.7rem 2.5rem;
   position: relative;
   height: 100%;
+}
+
+.sec05 .right_con .info_desc span {
+  color: red;
 }
 
 .sec05 .right_con .info_desc a span {

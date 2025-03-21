@@ -51,18 +51,10 @@
     const element = document.getElementById(name);
     element.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const save = () => {
-    console.log('save!');
-  };
 </script>
 
 <template>
   <main id="contaniner" class="main">
-    <!-- notice layer -->
-
-    <!-- visual layer -->
-
     <!-- sec01 -->
     <section class="section sec01 on">
       <div class="inner">
@@ -384,87 +376,7 @@
       <div class="page_title_box">
         <h2 class="tit">Contact Us</h2>
       </div>
-      <div class="inner">
-        <div class="left_con">
-          <div class="txt_b">
-            <h3>경리파트너 Sub X</h3>
-            <h4>
-              경리에 대한 고민경리에 대한
-              <br />
-              부담 더이상 고민하지마시고,
-              <br />
-              경리 파트너 Sux X에 문의하세요.
-            </h4>
-            <div class="cs-box">
-              <div class="flex_con">
-                <div class="icon_img">
-                  <img src="~/assets/img/main/db_icon_01.png" />
-                </div>
-                <div class="icon_txt">
-                  <p class="txt1">Location</p>
-                  <p class="txt2">경기도 수원시 팔달구 000번길 9-99 9층</p>
-                </div>
-              </div>
-              <div class="flex_con">
-                <div class="icon_img">
-                  <img src="~/assets/img/main/db_icon_02.png" />
-                </div>
-                <div class="icon_txt">
-                  <p class="txt1">Email</p>
-                  <p class="txt2">subxpartners@gamil.com</p>
-                </div>
-              </div>
-              <div class="flex_con">
-                <div class="icon_img">
-                  <img src="~/assets/img/main/db_icon_03.png" />
-                </div>
-                <div class="icon_txt">
-                  <p class="txt1">Call</p>
-                  <p class="txt2">010-2373-1696</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="right_con">
-          <div class="info_desc n1">
-            <form id="contactForm">
-              <div class="form">
-                <ul>
-                  <li>
-                    <label for="name">* 담당자</label>
-                    <input type="text" id="name" name="name" size="10" />
-                  </li>
-                  <li>
-                    <label for="name">* 회사명</label>
-                    <input type="text" id="company" name="company" size="10" />
-                  </li>
-                </ul>
-              </div>
-              <div class="form2">
-                <label for="name">이메일</label>
-                <input type="text" id="email" name="email" />
-              </div>
-              <div class="form2">
-                <label for="name">* 연락처</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                  maxlength="12"
-                  placeholder="- 제외 숫자만 입력해주세요."
-                />
-              </div>
-              <div class="form3">
-                <label for="name">문의내용</label>
-                <textarea id="message" name="message"></textarea>
-              </div>
-            </form>
-            <button type="button" id="btnContact" @click="save">문의하기</button>
-          </div>
-        </div>
-      </div>
+      <contact-form />
     </section>
   </main>
 </template>

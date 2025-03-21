@@ -1,7 +1,9 @@
 <template>
   <NuxtLayout>
     <transition name="fade" mode="out-in">
-      <NuxtPage />
+      <div :key="route.params">
+        <NuxtPage />
+      </div>
     </transition>
   </NuxtLayout>
   <!--  <div>
@@ -20,3 +22,8 @@
     opacity: 0;
   }
 </style>
+<script setup>
+  import { useRoute } from 'vue-router';
+
+  const route = useRoute();
+</script>
