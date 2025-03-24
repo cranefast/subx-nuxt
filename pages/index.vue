@@ -23,7 +23,7 @@
   };
 
   const activateSection = (scroll) => {
-    const wid = window.innerWidth;
+    const width = window.innerWidth;
 
     for (let i = 0; i < mainContent.value.length; i++) {
       if (scroll >= posArr[i] - baseLine) {
@@ -31,7 +31,7 @@
       }
     }
 
-    if (wid <= 500) {
+    if (width <= 500) {
       for (let i = 0; i < mainContent.value.length; i++) {
         if (scroll >= posArr[i] - baseLine * 4) {
           mainContent.value[i].classList.add('on');
@@ -370,6 +370,16 @@
           </li>
         </ul>
       </section>
+    </section>
+    <section class="sub_container sec04">
+      <section class="section01">
+        <div class="page_title_box">
+          <h2 class="tit">후기</h2>
+        </div>
+
+        <review-swiper />
+      </section>
+      <!--      <section class="section02"></section>-->
     </section>
     <!-- sec05 -->
     <section class="section sec05 img_ani bottom_top img_aniload on">
