@@ -77,7 +77,7 @@
             </div>
             <div class="icon_txt">
               <p class="txt1">Location</p>
-              <p class="txt2">경기도 수원시 팔달구 000번길 9-99 9층</p>
+              <p class="txt2">서울시 송파구 오금로 551, 209동 2층 201호 A-17</p>
             </div>
           </div>
           <div class="flex_con">
