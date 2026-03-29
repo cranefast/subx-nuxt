@@ -24,7 +24,7 @@
     <div class="header">
       <div class="inner f_b">
         <h1>
-          <router-link to="/" tag="a">
+          <router-link to="/">
             <img src="~/assets/img/main/logo.png" alt="로고" class="pc_ver" />
             <img src="~/assets/img/main/logo.png" alt="로고" class="mo_ver" />
           </router-link>
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="btn_box">
-          <button type="button" class="btn_call" @click="layoutStore.toggleMobileMenu()" :class="{ on: isMobileMenu }">
+          <button type="button" class="btn_call" :class="{ on: isMobileMenu }" @click="layoutStore.toggleMobileMenu()">
             <span></span>
             <!-- 230510 [수정표시] -->
           </button>

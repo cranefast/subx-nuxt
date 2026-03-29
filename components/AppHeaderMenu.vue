@@ -1,7 +1,8 @@
 <script setup>
-  const props = defineProps({
+  defineProps({
     addGnbClass: {
       type: String,
+      default: '',
     },
   });
 </script>
@@ -9,19 +10,19 @@
 <template>
   <ul id="gnb" :class="`gnb ${addGnbClass}`">
     <li class="depth1">
-      <router-link to="/service" tag="a">서비스</router-link>
+      <router-link to="/service">서비스</router-link>
     </li>
     <li class="depth1">
-      <router-link to="/review" tag="a">후기</router-link>
+      <router-link to="/review">후기</router-link>
     </li>
     <li class="depth1">
-      <router-link to="/price" tag="a">가격안내</router-link>
+      <router-link to="/price">가격안내</router-link>
     </li>
     <li class="depth1">
-      <router-link to="/faq" tag="a">자주묻는질문</router-link>
+      <router-link to="/faq">자주묻는질문</router-link>
     </li>
     <li class="depth1">
-      <router-link to="/contact" tag="a">문의</router-link>
+      <router-link to="/contact">문의</router-link>
     </li>
   </ul>
 </template>
