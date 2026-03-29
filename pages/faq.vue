@@ -1,8 +1,4 @@
 <script setup>
-  import { useSlideAnimation } from '@/composables/useSlideAnimation.js';
-
-  const { onEnter, onLeave } = useSlideAnimation();
-
   const faqList = ref([
     {
       question: 'Sub X는 어떤 사업자에게 가장 잘 맞나요?',
@@ -54,6 +50,12 @@
       isShow: index === targetIndex ? !item.isShow : false,
     }));
   };
+
+  const getFaqItemStyle = (index) => ({
+    '--faq-delay': `${(0.12 + index * 0.06).toFixed(2)}s`,
+  });
+
+  const getFaqAnswerId = (index) => `faq-answer-${index + 1}`;
 </script>
 
 <template>
@@ -88,21 +90,41 @@
               :key="item.question"
               class="faq-accordion__item"
               :class="{ 'is-open': item.isShow }"
+              :style="getFaqItemStyle(index)"
             >
-              <button type="button" class="faq-accordion__question" @click="toggleItem(index)">
-                <span class="faq-accordion__number">{{ String(index + 1).padStart(2, '0') }}</span>
+              <button
+                type="button"
+                class="faq-accordion__question"
+                :aria-expanded="item.isShow ? 'true' : 'false'"
+                :aria-controls="getFaqAnswerId(index)"
+                @click="toggleItem(index)"
+              >
+                <span class="faq-accordion__marker faq-accordion__marker--question">Q</span>
                 <span class="faq-accordion__text">
                   <strong>{{ item.question }}</strong>
                   <small>{{ item.summary }}</small>
                 </span>
-                <span class="faq-accordion__icon" :class="{ 'is-open': item.isShow }">+</span>
+                <span class="faq-accordion__icon" :class="{ 'is-open': item.isShow }" aria-hidden="true">
+                  <span class="faq-accordion__icon-bar faq-accordion__icon-bar--horizontal"></span>
+                  <span class="faq-accordion__icon-bar faq-accordion__icon-bar--vertical"></span>
+                </span>
               </button>
 
-              <transition name="slide-fade" @enter="onEnter" @leave="onLeave">
-                <div v-if="item.isShow" class="faq-accordion__answer">
-                  {{ item.answer }}
+              <div
+                :id="getFaqAnswerId(index)"
+                class="faq-accordion__panel"
+                :class="{ 'is-open': item.isShow }"
+                :aria-hidden="item.isShow ? 'false' : 'true'"
+              >
+                <div class="faq-accordion__panel-inner">
+                  <div class="faq-accordion__answer">
+                    <span class="faq-accordion__marker faq-accordion__marker--answer">A</span>
+                    <div class="faq-accordion__answer-body">
+                      <p>{{ item.answer }}</p>
+                    </div>
+                  </div>
                 </div>
-              </transition>
+              </div>
             </article>
           </div>
         </div>
@@ -119,6 +141,10 @@
     padding-bottom: 12rem;
   }
 
+  .modern-page-heading {
+    animation: faq-drop-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
   .faq-shell {
     display: grid;
     grid-template-columns: minmax(28rem, 34rem) minmax(0, 1fr);
@@ -132,11 +158,14 @@
     background: #ffffff;
     border: 1px solid rgba(14, 126, 247, 0.08);
     box-shadow: 0 22px 40px rgba(11, 39, 87, 0.06);
+    animation: faq-drop-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--faq-delay, 0s);
   }
 
   .faq-shell__intro {
     padding: 2.6rem;
     background: linear-gradient(145deg, #f6fbff 0%, #ffffff 54%, #eef5ff 100%);
+    animation-delay: 0.05s;
   }
 
   .faq-shell__eyebrow {
@@ -164,7 +193,7 @@
 
   .faq-shell__intro p,
   .faq-accordion__text small,
-  .faq-accordion__answer {
+  .faq-accordion__answer-body p {
     margin-top: 1.2rem;
     font-size: 1.5rem;
     line-height: 1.72;
@@ -222,18 +251,28 @@
     cursor: pointer;
   }
 
-  .faq-accordion__number {
+  .faq-accordion__marker {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 4.4rem;
-    height: 4.4rem;
+    width: 4.6rem;
+    height: 4.6rem;
     border-radius: 1.4rem;
-    background: rgba(14, 126, 247, 0.1);
-    color: #0e7ef7;
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.02em;
     flex-shrink: 0;
+  }
+
+  .faq-accordion__marker--question {
+    background: linear-gradient(180deg, rgba(14, 126, 247, 0.12) 0%, rgba(14, 126, 247, 0.18) 100%);
+    color: #0e7ef7;
+  }
+
+  .faq-accordion__marker--answer {
+    background: #0e7ef7;
+    color: #ffffff;
   }
 
   .faq-accordion__text {
@@ -256,6 +295,7 @@
   }
 
   .faq-accordion__icon {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -264,13 +304,29 @@
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.04);
     color: #111111;
-    font-size: 2rem;
-    font-weight: 500;
     flex-shrink: 0;
     transition:
       transform 0.2s ease,
       background-color 0.2s ease,
       color 0.2s ease;
+  }
+
+  .faq-accordion__icon-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.6rem;
+    height: 0.2rem;
+    border-radius: 999px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition:
+      transform 0.24s ease,
+      opacity 0.2s ease;
+  }
+
+  .faq-accordion__icon-bar--vertical {
+    transform: translate(-50%, -50%) rotate(90deg);
   }
 
   .faq-accordion__icon.is-open {
@@ -280,8 +336,79 @@
   }
 
   .faq-accordion__answer {
-    padding: 0 2.2rem 2.2rem 8.2rem;
-    margin-top: -0.6rem;
+    display: flex;
+    gap: 1.4rem;
+    align-items: flex-start;
+    padding: 0 2.2rem 2.2rem 2.2rem;
+    margin-top: -0.2rem;
+    opacity: 0;
+    transform: translateY(-0.8rem);
+    transition:
+      opacity 0.24s ease,
+      transform 0.34s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .faq-accordion__answer-body {
+    flex: 1;
+    min-width: 0;
+    padding: 1.8rem 2rem;
+    border-radius: 2rem;
+    background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+    border: 1px solid rgba(14, 126, 247, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  .faq-accordion__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.34s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .faq-accordion__panel-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .faq-accordion__panel.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-accordion__panel.is-open .faq-accordion__answer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes faq-drop-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-2rem);
+    }
+
+    70% {
+      opacity: 1;
+      transform: translateY(0.35rem);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .modern-page-heading,
+    .faq-shell__intro,
+    .faq-accordion__item {
+      animation: none;
+    }
+
+    .faq-accordion__item,
+    .faq-accordion__icon,
+    .faq-accordion__icon-bar,
+    .faq-accordion__panel,
+    .faq-accordion__answer {
+      transition: none;
+    }
   }
 
   @media (max-width: 1023px) {
@@ -310,7 +437,7 @@
 
     .faq-shell__intro p,
     .faq-accordion__text small,
-    .faq-accordion__answer {
+    .faq-accordion__answer-body p {
       font-size: 1.4rem;
       line-height: 1.66;
     }
@@ -324,15 +451,24 @@
       font-size: 1.75rem;
     }
 
-    .faq-accordion__number {
-      width: 3.8rem;
-      height: 3.8rem;
+    .faq-accordion__marker {
+      width: 4rem;
+      height: 4rem;
       border-radius: 1.2rem;
+      font-size: 1.35rem;
     }
 
     .faq-accordion__answer {
+      flex-direction: column;
+      gap: 1rem;
       padding: 0 1.8rem 1.8rem 1.8rem;
       margin-top: 0;
+    }
+
+    .faq-accordion__answer-body {
+      width: 100%;
+      padding: 1.6rem;
+      border-radius: 1.8rem;
     }
   }
 </style>
