@@ -81,7 +81,7 @@
       </div>
     </section>
     <!-- sec02 -->
-    <section class="section sec02" id="sec02">
+    <section id="sec02" class="section sec02">
       <div>
         <h2 class="tit img_ani bottom_top">
           Who Need SubX
@@ -373,8 +373,19 @@
     </section>
     <section class="sub_container sec04">
       <section class="section01">
-        <div class="page_title_box">
+        <div class="page_title_box review-section-heading">
+          <span class="review-section-heading__eyebrow">Client Stories</span>
           <h2 class="tit">후기</h2>
+          <p class="review-section-heading__desc">
+            후기 카드에는 꼭 필요한 정보와 좋았던 포인트 한 가지만 남겨, 메인 페이지에서도 빠르게 읽히도록 다시
+            정리했습니다.
+          </p>
+          <div class="review-section-heading__actions">
+            <!--            <NuxtLink to="/review" class="review-section-heading__action review-section-heading__action&#45;&#45;secondary">
+              후기 더보기
+            </NuxtLink>-->
+            <NuxtLink to="/review-write" class="review-section-heading__action">후기 작성하기</NuxtLink>
+          </div>
         </div>
 
         <review-swiper />
@@ -382,9 +393,11 @@
       <!--      <section class="section02"></section>-->
     </section>
     <!-- sec05 -->
-    <section class="section sec05 img_ani bottom_top img_aniload on">
-      <div class="page_title_box">
-        <h2 class="tit">Contact Us</h2>
+    <section class="section sec05 img_ani bottom_top img_aniload on sub_container">
+      <div class="page_title_box modern-page-heading">
+        <span class="modern-page-heading__eyebrow">Contact Us</span>
+        <h2 class="tit">문의하기</h2>
+        <p class="modern-page-heading__desc">업무 상황을 남겨주시면 지금 가장 필요한 범위부터 정리해드립니다.</p>
       </div>
       <contact-form />
     </section>
@@ -392,7 +405,6 @@
 </template>
 
 <style scoped>
-  @import '@/assets/css/main_respon.css';
   /*main sticky header*/
   .header {
     background: #f8f8f8;

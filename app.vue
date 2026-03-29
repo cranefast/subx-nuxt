@@ -11,6 +11,11 @@
     <NuxtWelcome />
   </div>-->
 </template>
+
+<script setup>
+  const route = useRoute();
+</script>
+
 <style>
   .fade-enter-active,
   .fade-leave-active {
@@ -22,8 +27,3 @@
     opacity: 0;
   }
 </style>
-<script setup>
-  import { useRoute } from 'vue-router';
-
-  const route = useRoute();
-</script>

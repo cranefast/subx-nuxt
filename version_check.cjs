@@ -20,21 +20,12 @@ try {
   console.log(`platform: ${platform}`);
 
   // nvm 초기화
-  let nvmInitScript = null;
+  let nvmScriptPath = null;
   if (platform === 'darwin' || platform === 'linux') {
-    const homeDir = require('os').homedir();
-    const possibleInitFiles = ['.bashrc', '.zshrc', '.bash_profile', '.profile']; // 가능한 초기화 파일
+    nvmScriptPath = path.join(os.homedir(), '.nvm', 'nvm.sh');
 
-    for (const file of possibleInitFiles) {
-      const filePath = path.join(homeDir, file);
-      if (fs.existsSync(filePath) && fs.readFileSync(filePath, 'utf-8').includes('nvm')) {
-        nvmInitScript = filePath;
-        break;
-      }
-    }
-
-    if (!nvmInitScript) {
-      console.error('ERROR: Unable to find nvm initialization in shell configuration files.');
+    if (!fs.existsSync(nvmScriptPath)) {
+      console.error('ERROR: Unable to find ~/.nvm/nvm.sh.');
       process.exit(1);
     }
   }
@@ -42,12 +33,15 @@ try {
   // 현재 Node.js 버전 가져오기
   let currentVersion;
   try {
-    currentVersion = execSync(platform === 'win32' ? 'nvm current' : `source ${nvmInitScript} && nvm current`, {
-      encoding: 'utf-8',
-    })
+    currentVersion = execSync(
+      platform === 'win32' ? 'nvm current' : `zsh -lc "source ${nvmScriptPath} && nvm current"`,
+      {
+        encoding: 'utf-8',
+      }
+    )
       .trim()
       .replace(/^v/, '');
-  } catch (e) {
+  } catch {
     currentVersion = 'none';
   }
 
@@ -59,7 +53,7 @@ try {
     const nvmCommand =
       platform === 'win32'
         ? `nvm install ${targetVersion} && nvm use ${targetVersion}`
-        : `'${nvmInitScript} && nvm install ${targetVersion} && nvm use ${targetVersion}'`;
+        : `zsh -lc "source ${nvmScriptPath} && nvm install ${targetVersion} && nvm use ${targetVersion}"`;
 
     execSync(nvmCommand, { stdio: 'inherit' });
   } else {

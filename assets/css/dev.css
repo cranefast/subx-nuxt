@@ -3,143 +3,153 @@ ul {
   padding-left: 0;
 }
 
-/* 자주묻는질문 */
-.faq-container {
-  max-width: 128rem;
+.review-section-heading {
+  margin-bottom: 3rem;
+}
+
+.review-section-heading .tit,
+.review-section-heading .page_title {
+  display: block;
+  width: 100%;
+  padding-bottom: 0;
+  margin-bottom: 1.6rem;
+}
+
+.review-section-heading__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.4rem;
+  margin-bottom: 1.8rem;
+  border-radius: 999px;
+  background: rgba(14, 126, 247, 0.1);
+  color: #0e7ef7;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.review-section-heading__desc {
+  max-width: 64rem;
   margin: 0 auto;
-  padding: 20px;
+  font-size: 1.7rem;
+  line-height: 1.76;
+  color: rgba(0, 0, 0, 0.62);
+  word-break: keep-all;
 }
 
-.faq-item {
-  border-bottom: 1px solid #ddd;
-  padding: 15px 0;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.faq-item:hover {
-  background: #f9f9f9;
-}
-
-.faq-question {
+.review-section-heading__actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+
+.review-section-heading__action {
+  display: inline-flex;
   align-items: center;
-  font-weight: bold;
-  padding: 0 10px;
+  justify-content: center;
+  min-width: 15rem;
+  padding: 1.2rem 1.8rem;
+  border-radius: 999px;
+  background: #0e7ef7;
+  color: #fff;
+  font-size: 1.45rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.faq-answer {
-  margin-top: 10px;
-  padding-left: 10px;
-  color: #555;
-  border-left: 3px solid #4caf50;
+.review-section-heading__action:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 12px 24px rgba(14, 126, 247, 0.2);
 }
 
-.rotated {
-  transform: rotate(180deg);
-  transition: transform 0.3s ease;
+.review-section-heading__action--secondary {
+  background: #ffffff;
+  color: #0e7ef7;
+  border: 1px solid rgba(14, 126, 247, 0.18);
 }
 
-.review-container {
-  padding: 20px 10px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.modern-page-heading {
+  margin-bottom: 3.2rem;
 }
 
-.review-container .swiper-slide {
-  flex: 0 0 calc((100% - 60px) / 3); /* 3개 기준 너비 고정 */
-  max-width: 33.33%; /* 강제 설정 */
-  box-sizing: border-box; /* 패딩 포함 크기 고정 */
+.modern-page-heading .tit,
+.modern-page-heading .page_title {
+  display: block;
+  width: 100%;
+  padding-bottom: 0;
+  margin-bottom: 1.6rem;
 }
 
-.review-card {
-  flex: 0 0 auto;
-  max-width: 320px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s;
-}
-
-.review-card:hover {
-  transform: translateY(-5px);
-}
-
-.review-header {
-  display: flex;
+.modern-page-heading__eyebrow {
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 15px;
+  padding: 0.8rem 1.4rem;
+  margin-bottom: 1.8rem;
+  border-radius: 999px;
+  background: rgba(14, 126, 247, 0.1);
+  color: #0e7ef7;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-.review-logo {
-  width: 60px; /* 로고 크기 확대 */
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 15px;
+.modern-page-heading__desc {
+  max-width: 66rem;
+  margin: 0 auto;
+  font-size: 1.7rem;
+  line-height: 1.76;
+  color: rgba(0, 0, 0, 0.62);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
-.review-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.review-company {
-  font-weight: bold;
-  font-size: 1.3rem; /* 회사명 폰트 크기 확대 */
-  margin: 0;
-}
-
-.review-industry {
-  font-size: 1rem;
-  color: #777;
-  margin: 0;
-}
-
-.review-content {
-  color: #444;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  color: #4caf50;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: #4caf50;
-}
-
-/* 복제 슬라이드 강제 스타일 추가 */
-.swiper-slide-duplicate .review-card {
-  flex: 0 0 auto;
-  max-width: 300px;
-  background-color: #fff; /* 백그라운드 색상 유지 */
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-@media (max-width: 640px) {
-  .review-container .swiper-slide {
-    flex: 0 0 100%; /* 모바일에서 강제 1개 설정 */
-    max-width: 100%;
+@media (max-width: 767px) {
+  .review-section-heading {
+    margin-bottom: 2.4rem;
   }
-}
 
-/* 슬라이드 애니메이션 */
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.3s ease;
-}
+  .review-section-heading__eyebrow {
+    margin-bottom: 1.4rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+  }
 
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  opacity: 0;
-  transform: translateY(-5px);
+  .review-section-heading__desc {
+    font-size: 1.45rem;
+    line-height: 1.7;
+  }
+
+  .review-section-heading__actions {
+    margin-top: 1.8rem;
+  }
+
+  .review-section-heading__action {
+    width: 100%;
+    min-width: 0;
+    padding: 1.1rem 1.6rem;
+    font-size: 1.4rem;
+  }
+
+  .modern-page-heading {
+    margin-bottom: 2.6rem;
+  }
+
+  .modern-page-heading__eyebrow {
+    margin-bottom: 1.4rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+  }
+
+  .modern-page-heading__desc {
+    font-size: 1.45rem;
+    line-height: 1.7;
+  }
 }

@@ -1,9 +1,0 @@
-/*main sticky header*/
-.header {
-  background: #f8f8f8;
-  transition: all 0.3s;
-}
-.sticky .header {
-  background: #fff;
-  transition: all 0.3s;
-}
